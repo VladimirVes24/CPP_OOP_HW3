@@ -1,20 +1,140 @@
-// CPP_OOP_HW3.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
+
+
+//Task 1 =================================================================================================================
+class Figure
+{
+public:
+	Figure() {};
+	virtual double area() = 0;
+};
+
+class Parallelogram : public Figure
+{
+protected:
+	double a, h;
+
+public:
+	Parallelogram(double inputA, double inputH)
+		: a(inputA), h(inputH) {};
+
+	double area() override
+	{
+		return (a * h);
+	}
+};
+
+class Rectangle : public Parallelogram
+{
+public:
+	Rectangle(double inputA, double inputH)
+		: Parallelogram(inputA, inputH) {};
+
+	double area() override
+	{
+		return (a * h);
+	}
+};
+
+class Square : public Parallelogram
+{
+public:
+	Square(double inputA)
+		: Parallelogram(inputA, inputA) {};
+
+	double area() override
+	{
+		return (a * a);
+	}
+};
+
+class Rhombus : public Parallelogram
+{
+public:
+	Rhombus(double inputA, double inputH)
+		: Parallelogram(inputA, inputH) {};
+
+	double area() override
+	{
+		return (a * h);
+	}
+};
+
+//Task 2 ======================================================================================================================
+
+class Car
+{
+protected:
+	std::string company, model;
+public:
+	 Car() {}
+	 Car(std::string inputCompany, std::string inputModel)
+		: company(inputCompany), model(inputModel)
+	{
+	}
+};
+
+class PassengerCar : virtual public Car
+{
+public:
+	PassengerCar(){}
+	PassengerCar(std::string inputCompany, std::string inputModel)
+		: Car(inputCompany, inputModel)
+	{
+		std::cout << "\n" << company << " " << model;
+	}
+
+	std::string getModel()
+	{
+		return model;
+	}
+};
+
+class Bus : virtual public Car
+{
+public:
+	Bus(){}
+	Bus(std::string inputCompany, std::string inputModel)
+		: Car(inputCompany, inputModel)
+	{
+		std::cout << "\n" << company << " " << model;
+	}
+};
+
+class Minivan : public PassengerCar, public Bus
+{
+public:
+	Minivan(std::string inputCompany, std::string inputModel)
+		: Car(inputCompany, inputModel)
+	{
+		std::cout << "\n" << company << " " << model;
+	}
+};
+
+//Task 3 ======================================================================================================================
 
 int main()
 {
-    std::cout << "Hello World!\n";
-}
+	//Task 1 ==================================================================================================================
+	double squareBase(5);
+	Square square(squareBase);
+	std::cout << square.area() << "\n";
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
+	double rectangleBase(3), rectangleHeight(3);
+	Rectangle rectangle(rectangleBase, rectangleHeight);
+	std::cout << rectangle.area() << "\n";
 
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+	double rhombusBase(2), rhombusHeight(5);
+	Rhombus rhombus(rhombusBase, rhombusHeight);
+	std::cout << rhombus.area() << "\n";
+
+	//Task 2 ==================================================================================================================
+
+	Car car("Daewoo", "Matiz");
+	PassengerCar passengerCar("Mersedes", "X5");
+	Bus bus("PAZ", "3201");
+	Minivan("Volkswagen", "Caravelle");
+
+	//Task 3 ==================================================================================================================
+
+	}

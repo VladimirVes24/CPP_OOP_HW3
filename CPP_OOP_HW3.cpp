@@ -151,7 +151,6 @@ public:
 	{
 		return denominator;
 	}
-
 };
 
 Fraction operator+(const Fraction& d1, const Fraction& d2)
@@ -219,7 +218,6 @@ bool operator>=(Fraction& d1, Fraction& d2)
 std::ostream& operator<<(std::ostream& out, const Fraction& fraction)
 {
 	out << fraction.numerator << "/" << fraction.denominator;
-
 	return out;
 }
 
@@ -254,6 +252,7 @@ private:
 	Ranks rank;
 	bool isFaceUp;
 public:
+
 	void Flip()
 	{
 		isFaceUp = !isFaceUp;
@@ -302,6 +301,4 @@ int main()
 	if (d1 <= d2) std::cout << "\nFraction 1 <= Fraction 2";
 	if (d1 < d2) std::cout << "\nFraction 1 < Fraction 2";
 	if (d1 >= d2) std::cout << "\nFraction 1 >= Fraction 2";
-
-	//Task 4 =================================================================================================================
 	}

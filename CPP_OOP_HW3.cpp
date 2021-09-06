@@ -223,6 +223,48 @@ std::ostream& operator<<(std::ostream& out, const Fraction& fraction)
 	return out;
 }
 
+//Task 4 ======================================================================================================================
+enum Suits {
+	CLUBS,
+	DIAMONDS,
+	HEARTS,
+	SPADES
+};
+
+enum Ranks {
+	ACE = 1,
+	TWO,
+	THREE,
+	FOUR,
+	FIVE,
+	SIX,
+	SEVEN,
+	EIGHT,
+	NINE,
+	TEN,
+	JACK,
+	QUEEN,
+	KING
+};
+
+class Card
+{
+private:
+	Suits suit;
+	Ranks rank;
+	bool isFaceUp;
+public:
+	void Flip()
+	{
+		isFaceUp = !isFaceUp;
+	}
+
+	Ranks getValue()
+	{
+		return rank;
+	}
+};
+
 int main()
 {
 	//Task 1 ==================================================================================================================
@@ -260,4 +302,6 @@ int main()
 	if (d1 <= d2) std::cout << "\nFraction 1 <= Fraction 2";
 	if (d1 < d2) std::cout << "\nFraction 1 < Fraction 2";
 	if (d1 >= d2) std::cout << "\nFraction 1 >= Fraction 2";
+
+	//Task 4 =================================================================================================================
 	}

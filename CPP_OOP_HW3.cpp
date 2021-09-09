@@ -24,6 +24,20 @@ public:
 	}
 };
 
+class Circle : public Figure
+{
+private:
+	double r;
+public:
+	Circle(double inputR)
+		: r(inputR) {};
+
+	double area() override
+	{
+		return (3.14 * r * r / 2);
+	}
+};
+
 class Rectangle : public Parallelogram
 {
 public:
@@ -70,8 +84,14 @@ public:
 	 Car() {}
 	 Car(std::string inputCompany, std::string inputModel)
 		: company(inputCompany), model(inputModel)
-	{
-	}
+	 {
+		 std::cout << "\nBase car constructor";
+	 }
+
+	 virtual ~Car()
+	 {
+		 std::cout << "\nBase car destructor";
+	 }
 };
 
 class PassengerCar : virtual public Car
@@ -81,12 +101,18 @@ public:
 	PassengerCar(std::string inputCompany, std::string inputModel)
 		: Car(inputCompany, inputModel)
 	{
+		std::cout << "\nPassenger car constructor";
 		std::cout << "\n" << company << " " << model;
 	}
 
 	std::string getModel()
 	{
 		return model;
+	}
+
+	~PassengerCar()
+	{
+		std::cout << "\nPassenger car destructor";
 	}
 };
 
@@ -97,7 +123,13 @@ public:
 	Bus(std::string inputCompany, std::string inputModel)
 		: Car(inputCompany, inputModel)
 	{
+		std::cout << "\nBus constructor";
 		std::cout << "\n" << company << " " << model;
+	}
+
+	~Bus()
+	{
+		std::cout << "\nBus destructor";
 	}
 };
 
@@ -107,7 +139,13 @@ public:
 	Minivan(std::string inputCompany, std::string inputModel)
 		: Car(inputCompany, inputModel)
 	{
+		std::cout << "\nMinivan constructor";
 		std::cout << "\n" << company << " " << model;
+	}
+
+	~Minivan()
+	{
+		std::cout << "\nMinivan destructor";
 	}
 };
 
@@ -267,6 +305,14 @@ public:
 int main()
 {
 	//Task 1 ==================================================================================================================
+	double parallelorgamHeight(3), parallelogramBase(5.1);
+	Parallelogram parallelogram(parallelogramBase, parallelorgamHeight);
+	std::cout << parallelogram.area() << "\n";
+
+	double circleRadius(2.8);
+	Circle circle(circleRadius);
+	std::cout << circle.area() << "\n";
+
 	double squareBase(5);
 	Square square(squareBase);
 	std::cout << square.area() << "\n";
@@ -281,10 +327,21 @@ int main()
 
 	//Task 2 ==================================================================================================================
 
-	Car car("Daewoo", "Matiz");
-	PassengerCar passengerCar("Mersedes", "X5");
-	Bus bus("PAZ", "3201");
-	Minivan("Volkswagen", "Caravelle");
+	Car *car = new Car("Daewoo", "Matiz");
+	std::cout << "\n==============================";
+	PassengerCar *passengerCar = new PassengerCar("Mersedes", "X5");
+	std::cout << "\n==============================";
+	Bus *bus = new Bus("PAZ", "3201");
+	std::cout << "\n==============================";
+	Minivan *minivan = new Minivan("Volkswagen", "Caravelle");
+	std::cout << "\n==============================";
+	delete minivan;
+	std::cout << "\n==============================";
+	delete bus;
+	std::cout << "\n==============================";
+	delete passengerCar;
+	std::cout << "\n==============================";
+	delete car;
 
 	//Task 3 ==================================================================================================================
 	Fraction d1(3, 2);
